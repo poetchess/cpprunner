@@ -6,13 +6,13 @@
 
 struct Sales_data {
     std::string isbn() {return bookNo;}
-    Sales_data &combine(Sales_data &);
+    Sales_data &combine(const Sales_data &);
     std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
 };
 
 std::istream &read(std::istream &, Sales_data &);
-std::ostream &print(std::ostream &, Sales_data &);
+std::ostream &print(std::ostream &, const Sales_data &);
 
 #endif

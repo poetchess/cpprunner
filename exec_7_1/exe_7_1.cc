@@ -6,10 +6,10 @@ using std::cin; using std::cout; using std::cerr; using std::endl;
 using std::string;
 using std::istream; using std::ostream;
 
-Sales_data & Sales_data::combine(Sales_data &rhs)
+Sales_data & Sales_data::combine(const Sales_data &rhs)
 {
-    this->units_sold += rhs.units_sold;
-    this->revenue += rhs.revenue;
+    units_sold += rhs.units_sold;
+    revenue += rhs.revenue;
     return *this;
 }
 
@@ -19,7 +19,7 @@ istream &read(istream &is, Sales_data &sd)
     return is;
 }
 
-ostream &print(ostream &os, Sales_data &sd)
+ostream &print(ostream &os, const Sales_data &sd)
 {
     os << sd.bookNo << " " << sd.units_sold << " " 
         << sd.revenue;

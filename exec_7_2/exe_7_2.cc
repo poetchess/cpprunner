@@ -18,9 +18,13 @@ Sales_data & Sales_data::combine(const Sales_data &rhs)
     return *this;
 }
 
+// Although the function defines operation that is conceptually part of the 
+//   interface of the class, it is not part of the class itself.
 istream &read(istream &is, Sales_data &sd)
 {
-    is >> sd.bookNo >> sd.units_sold >> sd.revenue;
+    double price = 0;
+    is >> sd.bookNo >> sd.units_sold >> price;
+    sd.revenue = price * sd.units_sold;
     return is;
 }
 
@@ -31,13 +35,20 @@ ostream &print(ostream &os, const Sales_data &sd)
     return os;
 }
 
+Sales_data add(const Sales_data &lhs, const Sales_data &rhs)
+{
+    Sales_data sum = lhs;
+    sum.combine(rhs);
+    return sum;
+}
+
 int main() {
     Sales_data total;
     if (read(cin, total)) {
         Sales_data trans;
         while (read(cin, trans)) {
             if (total.isbn() == trans.isbn()) {
-                total.combine(trans);
+                total = add(total, trans);
             }
             else {
                 print(cout, total) << endl;

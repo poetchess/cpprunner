@@ -42,7 +42,12 @@ double Sales_data::avg_price() const {
         return 0;
 }
 
-// nonmember interface functions
+// nonmember interface functions, should be declared in the same header as the 
+//   class itself.
+
+// The IO classes are types that cannot be copied, so we may only pass them by 
+//   reference. And reading or writing to a stream changes that stream, so both
+//   read() and print() take ordinary reference.
 Sales_data add(const Sales_data &, const Sales_data &);
 std::istream &read(std::istream &, Sales_data &);
 std::ostream &print(std::ostream &, const Sales_data &);

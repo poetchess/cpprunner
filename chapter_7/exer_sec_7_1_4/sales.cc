@@ -43,22 +43,26 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs)
 }
 
 int main() {
-    Sales_data total;
-    if (read(cin, total)) {
-        Sales_data trans;
-        while (read(cin, trans)) {
+
+    Sales_data total(cin);
+    if (!cin) {
+        cerr << "No data?!" << endl;
+        return -1;
+    }
+
+    while (cin) {
+        Sales_data trans(cin);
+        if (cin) {
             if (total.isbn() == trans.isbn()) {
-                total = add(total, trans);
+                total.combine(trans);
             }
             else {
                 print(cout, total) << endl;
                 total = trans;
             }
         }
-        print(cout, total) << endl;
-    } else {
-        cerr << "No data?!" << endl;
-        return -1;
     }
+    
+    print(cout, total) << endl;
     return 0;
 }

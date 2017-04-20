@@ -23,11 +23,6 @@ Screen &Screen::display(ostream &os) {
     return *this;
 }
 
-// When one member calls another, the 'this' pointer is passed implicitly.
-//   Thus, when display calls do_display, its own 'this' pointer is implicitly 
-//   passed to do_display. When the non-const version of display calls 
-//   do_display, its 'this' pointer is implicitly converted from a pointer to
-//   non-const to a pointer to const.
 void Screen::do_display(ostream &os) const {
     for (pos r = 0; r < height; r++) {
         os << contents.substr(r * width, width);

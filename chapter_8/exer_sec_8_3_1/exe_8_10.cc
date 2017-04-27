@@ -33,10 +33,17 @@ int main(int argc, char *argv[]) {
     }
 
     cout << "File contents:" << endl;
+    istringstream iss;
+
     for (auto e : svec) {
-        istringstream iss(e);
+        iss.str(e);
         while (iss >> buf) {
             cout << buf << endl;
+        }
+
+        //iss is defined outside the loop, need to clear the error status
+        if (iss.eof()) {
+            iss.clear();
         }
     }
     return 0;
